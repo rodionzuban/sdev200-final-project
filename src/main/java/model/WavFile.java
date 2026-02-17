@@ -12,6 +12,7 @@ public class WavFile {
     private String filePath;
     private int numListens;
 
+    // initialize WavFile if a given file does exist
     public WavFile(File file) throws IllegalArgumentException {
         if (!file.exists()) {
             throw new IllegalArgumentException("File does not exist");
@@ -27,6 +28,7 @@ public class WavFile {
         numListens = 0;
     }
 
+    // getter methods
     public String getTitle() {
         return title;
     }
@@ -47,6 +49,7 @@ public class WavFile {
         numListens++;
     }
 
+    // get properties of title and duration from wav file
     public static String extractTitle(File file) {
         try {
             String fileName = file.getName();

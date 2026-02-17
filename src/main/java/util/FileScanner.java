@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileScanner {
+    // scan the given directory and create a list of included WavFiles. scan
+    // subdirectories, if needed
     public static List<WavFile> scanDirectory(File folder, boolean scanSubDirectories) throws IllegalArgumentException {
         if (!folder.exists()) {
             throw new IllegalArgumentException("Folder does not exist");
@@ -26,6 +28,7 @@ public class FileScanner {
         return result;
     }
 
+    // load a folder path as a File object
     public static File loadFolder(String path) throws IllegalArgumentException {
         System.out.println(path);
         File folder = new File(URI.create(path));

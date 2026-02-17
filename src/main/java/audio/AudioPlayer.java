@@ -12,6 +12,7 @@ public class AudioPlayer {
     private boolean paused;
     private boolean addedListen;
 
+    // initialize AudioPlayr
     public AudioPlayer() {
         mediaPlayer = null;
         track = null;
@@ -23,6 +24,7 @@ public class AudioPlayer {
         load(track);
     }
 
+    // load WavFile as a MediaPlayer Media in JavaFX
     public void load(WavFile track) {
         stop();
 
@@ -41,6 +43,7 @@ public class AudioPlayer {
         }
     }
 
+    // play track, and add a listen to it if not done yet
     public void play() {
         if (mediaPlayer != null) {
             mediaPlayer.play();
@@ -52,6 +55,7 @@ public class AudioPlayer {
         }
     }
 
+    // pause track
     public void pause() {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
@@ -59,12 +63,14 @@ public class AudioPlayer {
         }
     }
 
+    // stop track, resetting to the start of the track
     public void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
     }
 
+    // getter methods
     public boolean getPaused() {
         return paused;
     }
