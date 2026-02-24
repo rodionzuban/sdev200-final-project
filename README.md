@@ -1,18 +1,12 @@
-## Getting Started
+## WAV Library - A Final Project for Ivy Tech's SDEV 200
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+This repository is my final project submission for Ivy Tech's SDEV 200 (Software Development with Java)
 
-## Folder Structure
+The project is a JavaFX app that manages, organizes, and adds playback functionality for .wav files available locally on the user's computer.
 
-The workspace contains two folders by default, where:
+Important locations and structure are as follows:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- `docs`: contains all documentation materials including mockups
+- `src`: contains all source files
+  - `main`: actual program code and resources
+  - `test`: all test files and resources

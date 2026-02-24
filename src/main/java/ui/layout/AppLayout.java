@@ -10,6 +10,7 @@ import ui.screens.ImportScreen;
 import ui.screens.PlaylistsScreen;
 import ui.screens.ScreenType;
 
+// AppLayout - manages UI interactions and navigation
 public final class AppLayout extends BorderPane {
     private NavigationBar navigation;
     private NowPlaying nowPlaying;

@@ -3,6 +3,8 @@ package ui.elements;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
+// AppLabel - used for text across application
+// comes in 3 types - TITLE, SUBTITLE, TEXT
 public class AppLabel extends Label {
     public AppLabel(String text) {
         setFont(new Font(16));
