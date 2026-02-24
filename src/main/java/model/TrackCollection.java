@@ -1,21 +1,23 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class TrackCollection {
-    protected List<WavFile> tracks;
+    protected ObservableList<WavFile> tracks;
     protected int currentIndex;
 
     // constructors
 
     public TrackCollection() {
-        tracks = new ArrayList<WavFile>();
+        tracks = FXCollections.observableArrayList();
         currentIndex = -1;
     }
 
     public TrackCollection(List<WavFile> tracks) {
-        this.tracks = new ArrayList<>(tracks);
+        this.tracks = FXCollections.observableArrayList(tracks);
         currentIndex = 0;
     }
 
@@ -74,6 +76,19 @@ public class TrackCollection {
         }
 
         return false;
+    }
+
+    // load next track in collection
+    public WavFile nextTrack() {
+        if (size() <= 0) {
+            return null;
+        }
+        int index = currentIndex == size() - 1 ? 0 : currentIndex + 1;
+        return setCurrentIndex(index);
+    }
+
+    public ObservableList<WavFile> getTracks() {
+        return tracks;
     }
 
 }

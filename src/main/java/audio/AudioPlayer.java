@@ -11,6 +11,7 @@ public class AudioPlayer {
     private WavFile track;
     private boolean paused;
     private boolean addedListen;
+    private WavFile lastPlayedTrack;
 
     // initialize AudioPlayr
     public AudioPlayer() {
@@ -18,6 +19,7 @@ public class AudioPlayer {
         track = null;
         paused = true;
         addedListen = false;
+        lastPlayedTrack = null;
     }
 
     public AudioPlayer(WavFile track) {
@@ -29,6 +31,9 @@ public class AudioPlayer {
         stop();
 
         try {
+            if (lastPlayedTrack != null) {
+                lastPlayedTrack = this.track;
+            }
             File file = new File(track.getFilePath());
             Media media = new Media(file.toURI().toString());
 
@@ -88,5 +93,12 @@ public class AudioPlayer {
             return mediaPlayer.getCurrentTime().toSeconds();
         }
         return -1;
+    }
+
+    // loads the last track played for previous button on playback
+    public void loadLastTrack() {
+        if (lastPlayedTrack != null) {
+            load(lastPlayedTrack);
+        }
     }
 }

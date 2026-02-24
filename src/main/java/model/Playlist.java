@@ -59,6 +59,7 @@ public class Playlist extends TrackCollection {
 
     // get the next track, either sequentially or by randomly selecting from
     // notPlayedIndices in this shuffle iteration
+    @Override
     public WavFile nextTrack() {
         if (size() <= 0) {
             return null;
@@ -73,8 +74,7 @@ public class Playlist extends TrackCollection {
             int trackIndex = notPlayedIndices.remove(index);
             return setCurrentIndex(trackIndex);
         } else {
-            int index = currentIndex == size() - 1 ? 0 : currentIndex + 1;
-            return setCurrentIndex(index);
+            return super.nextTrack();
         }
     }
 
