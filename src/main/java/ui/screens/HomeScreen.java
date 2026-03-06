@@ -5,7 +5,10 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import model.WavFile;
+import ui.elements.AppLabel;
+import ui.elements.AppLabelType;
 import ui.elements.TrackRow;
 
 // HomeScreen - displays all tracks in AppController's globalCollection
@@ -25,12 +28,28 @@ public class HomeScreen extends BorderPane {
                 if (empty || track == null) {
                     setGraphic(null);
                 } else {
-                    setGraphic(new TrackRow(track, controller.getGlobalCollection(), null));
+                    setGraphic(
+                            new TrackRow(track, controller.getGlobalCollection(), this::handleTrackPlay,
+                                    this::handleTrackRemove, controller));
                 }
+            }
+
+            private void handleTrackPlay(Integer index) {
+                controller.handlePlayRequest(controller.getGlobalCollection(), index);
+            }
+
+            private void handleTrackRemove(Integer index) {
+                controller.removeTrackGlobally(index);
             }
         });
 
-        setCenter(trackListView);
+        AppLabel noTracksLabel = new AppLabel(AppLabelType.SUBTITLE, "No tracks in library. Add files to get started!");
+        StackPane centerPane = new StackPane(trackListView, noTracksLabel);
+
+        trackListView.visibleProperty().bind(controller.getGlobalCollection().sizeProperty().greaterThan(0));
+        noTracksLabel.visibleProperty().bind(controller.getGlobalCollection().sizeProperty().isEqualTo(0));
+
+        setCenter(centerPane);
         setPadding(new Insets(10));
     }
 }

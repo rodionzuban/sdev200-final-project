@@ -21,10 +21,11 @@ public final class AppLayout extends BorderPane {
 
     public AppLayout(AppController controller, Stage stage) {
         navigation = new NavigationBar(this::switchScreen);
-        nowPlaying = new NowPlaying(controller::togglePlay, controller::nextTrack, controller::previousTrack);
+        nowPlaying = new NowPlaying(controller::togglePlay, controller::nextTrack, controller::previousTrack,
+                controller);
         homeScreen = new HomeScreen(controller);
         playlistsScreen = new PlaylistsScreen(controller);
-        importScreen = new ImportScreen(stage);
+        importScreen = new ImportScreen(stage, controller);
         currentScreen = homeScreen;
 
         setTop(navigation);
@@ -51,5 +52,9 @@ public final class AppLayout extends BorderPane {
                 setCenter(importScreen);
                 break;
         }
+    }
+
+    public NowPlaying getNowPlaying() {
+        return nowPlaying;
     }
 }

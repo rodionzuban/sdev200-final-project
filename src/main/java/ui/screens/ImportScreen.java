@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.AppController;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
@@ -23,7 +24,7 @@ public class ImportScreen extends BorderPane {
     private Button folderImportButton = new Button("Folder");
     private VBox centerSelectionContainer = new VBox();
 
-    public ImportScreen(Stage stage) {
+    public ImportScreen(Stage stage, AppController controller) {
         HBox buttonContainer = new HBox(fileImportButton, folderImportButton);
         buttonContainer.setAlignment(Pos.CENTER);
         buttonContainer.setSpacing(25);
@@ -45,7 +46,7 @@ public class ImportScreen extends BorderPane {
                 WavFile selectedFile = new WavFile(fileChooser.showOpenDialog(stage));
                 List<WavFile> fileList = new ArrayList<WavFile>();
                 fileList.add(selectedFile);
-                setCenter(new ConfirmImportScreen(fileList, this));
+                setCenter(new ConfirmImportScreen(fileList, this, controller));
             } catch (Exception ex) {
 
             }
@@ -61,7 +62,7 @@ public class ImportScreen extends BorderPane {
                 File selectedDirectory = directoryChooser.showDialog(stage);
                 if (selectedDirectory != null && selectedDirectory.isDirectory()) {
                     List<WavFile> fileList = FileScanner.scanDirectory(selectedDirectory, true);
-                    setCenter(new ConfirmImportScreen(fileList, this));
+                    setCenter(new ConfirmImportScreen(fileList, this, controller));
                 }
             } catch (Exception ex) {
 

@@ -33,6 +33,10 @@ public class WavFile {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public long getDuration() {
         return duration;
     }

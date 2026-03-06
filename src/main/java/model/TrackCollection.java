@@ -2,12 +2,15 @@ package model;
 
 import java.util.List;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class TrackCollection {
     protected ObservableList<WavFile> tracks;
     protected int currentIndex;
+    protected IntegerProperty size = new SimpleIntegerProperty(0);
 
     // constructors
 
@@ -19,6 +22,7 @@ public class TrackCollection {
     public TrackCollection(List<WavFile> tracks) {
         this.tracks = FXCollections.observableArrayList(tracks);
         currentIndex = 0;
+        size.set(tracks.size());
     }
 
     public int getCurrentIndex() {
@@ -47,10 +51,18 @@ public class TrackCollection {
         return tracks.size();
     }
 
+    public IntegerProperty sizeProperty() {
+        return size;
+    }
+
     // add a track if it isn't already in the list (prevent duplicates)
     public boolean addTrack(WavFile track) {
         if (!contains(track)) {
             tracks.add(track);
+            if (currentIndex == -1) {
+                currentIndex = 0;
+            }
+            size.set(size());
             return true;
         }
         return false;
@@ -71,7 +83,7 @@ public class TrackCollection {
                     currentIndex++;
                 }
             }
-
+            size.set(size());
             return true;
         }
 
@@ -87,8 +99,27 @@ public class TrackCollection {
         return setCurrentIndex(index);
     }
 
+    public WavFile previousTrack() {
+        if (size() <= 0) {
+            return null;
+        }
+        int index = currentIndex == 0 ? size() - 1 : currentIndex - 1;
+        return setCurrentIndex(index);
+    }
+
     public ObservableList<WavFile> getTracks() {
         return tracks;
+    }
+
+    public WavFile getTrack() {
+        return tracks.get(currentIndex);
+    }
+
+    public WavFile getAtIndex(int index) {
+        if (index >= 0 && index < size()) {
+            return tracks.get(index);
+        }
+        return null;
     }
 
 }

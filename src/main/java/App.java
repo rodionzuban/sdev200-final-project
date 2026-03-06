@@ -8,6 +8,7 @@ public class App extends Application {
     public void start(Stage stage) {
         AppController controller = new AppController();
         AppLayout layout = new AppLayout(controller, stage);
+        controller.setAppLayout(layout);
 
         Scene scene = new Scene(layout);
         stage.setTitle("WAV Library");
