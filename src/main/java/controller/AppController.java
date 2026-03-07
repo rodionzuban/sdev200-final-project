@@ -49,7 +49,7 @@ public class AppController {
 
     // load previous and next track in playback
     public void nextTrack() {
-        if (currentCollection != null) {
+        if (currentCollection.get() != null) {
             WavFile nextTrack = currentCollection.get().nextTrack();
 
             backStack.push(currentTrack.get());

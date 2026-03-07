@@ -140,7 +140,7 @@ public class PlaylistScreen extends BorderPane {
 
         public EditPlaylistDialog() {
             setTitle("Edit playlist");
-            setHeaderText("Enter name and escription:");
+            setHeaderText("Enter name and description:");
 
             nameField = new TextField();
             descriptionField = new TextField();
@@ -167,7 +167,9 @@ public class PlaylistScreen extends BorderPane {
 
         public Pair<String, String> run(String defaultName, String defaultDescription) {
             nameField.setPromptText(defaultName);
+            nameField.setText(defaultName);
             descriptionField.setPromptText(defaultDescription);
+            descriptionField.setText(defaultDescription);
 
             Optional<Pair<String, String>> result = showAndWait();
 
