@@ -10,3 +10,5 @@ Important locations and structure are as follows:
 - `src`: contains all source files
   - `main`: actual program code and resources
   - `test`: all test files and resources
+
+The documentation required for the final project submission is located in `docs` as `SDEV200_Final_Project_Documentation.pdf` and `SDEV200_Final_Project_Documentation.docx`.
